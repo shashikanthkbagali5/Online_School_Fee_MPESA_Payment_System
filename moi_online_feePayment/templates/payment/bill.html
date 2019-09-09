@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+
+{% block message %}
+
+{% if messages %}
+<ul class="messagelist">
+	{% for message in messages|slice:"forloop.count-1:" %}
+	<li>{{message}}</li>
+	{% endfor %}
+</ul>
+{% endif %}
+
+{% endblock %}
+
+{% block content %}
+<div class="container">
+	<div style="background-color: #b6e3b6; border-radius: 5em;" class="row mt-3 pl-3">
+		<div class="col-md-9 col-sm-9 col-xs-12 mt-3">
+
+			<p class="pl-3 pt-1">Check only the Groups currently in session and click Bill if the sem has begun</p>
+			<table class="table table-hover"> 
+			   <!--	<caption><button class="btn btn-info" type="submit" href="">CheckOut</button></caption> -->
+			      <thead> 
+			         <tr>
+			         	<th>No</th> 
+			            <th>Group</th> 
+			            <th class="pr-3">Amount</th>
+			            <th>In Session</th> 
+			            <th>Change Session</th>
+			         </tr> 
+			      </thead> 
+			      <tbody>
+			     <form method="POST" action="{% url 'bill_' %}"> {% csrf_token %}
+			      	{% for gr in group %}  
+			         <tr id='check__'>
+			         	<td>{{ forloop.counter }}</td>
+			            <td>{{ gr.group }}</td> 
+			            <td>{{ gr.amount }}</td>  
+			            <td class="in_sess">{{ gr.in_session }}</td>
+			            {% if gr.in_session %}
+			            <td><input type="checkbox" name="{{ gr.group }}" checked="yes"></td>
+			            {% else %}
+			            <td><input type="checkbox" name="{{ gr.group }}"></td>
+			            {% endif %}
+			            
+			         </tr>
+			         {% endfor %}
+			      </tbody> 
+			   </table>
+			   <div class="col-md-2 pb-3 ml-auto">
+					<button class="btn btn-lg btn-outline-success px-5" type=​"submit"​>​Bill</button>
+				</form>
+
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	$(document).ready(function () {
+		$('.btn').click(function(){
+			$('body').preloader('remove');
+			$('body').preloader({
+				percent: '94',
+				duration: '4000',
+				text: 'Processing...',
+			});
+
+		});
+
+		// Toggles the In Session column wrt Change Session state
+		$("td > input[type='checkbox']").click(function(){
+			if ($(this).prop('checked') == true) {
+				$(this).closest('tr').find('td.in_sess').html('True');
+				// alert('checked');
+			} else if($(this).prop('checked') == false) {
+				$(this).closest('tr').find('td.in_sess').html('False');
+				// alert('not checked');
+			}
+		});
+
+		//end ofSession column toggle code
+	});
+</script>
+{% endblock content %}
+
+
+
+
+
+<!--
+	Display all the available groups and check only those that are in session
+ action="{% url 'bill_' %}"
+
+
+
+				<form method='POST'> {% csrf_token %}
+				{% for gr in group %}
+				<p>{{ gr.group }}</p>
+				<p>{{ gr.amount }}</p>
+				<p> In Session</p> <input type="checkbox" name="sess" value="In Session">
+				{% endfor %}
+				<input type="submit" class="btn btn-info" value="Bill">
+			</form>
+
+  -->
+

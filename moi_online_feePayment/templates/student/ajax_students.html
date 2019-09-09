@@ -1,0 +1,91 @@
+{% for student in list %}
+<div class="card">
+<div class="card-header" id="{{student.id}}">
+<h5 class="mb-0">
+<button style="text-decoration: none; float: left; color: #107710;" class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#{{student.reg_no}}" aria-expanded="false" aria-controls="expandable1">
+{{ student.reg_no }}
+</button>
+</h5>
+</div>
+<div id="{{student.reg_no}}" class="collapse" aria-labelledby="{{student.id}}" data-parent="#myAccordion">
+<div class="card-body">
+<div style="width: 100%" class="row">
+	{% if student.image %}
+	<div class="md-3 mr-5">
+	<img class="img img-fluid" src="{{student.image.url}}" alt="dis nuts">
+</div>
+{% endif %}
+<div class="md-3 mr-5">
+	<h4><em>Student Details</em> </h4><hr>
+	<p><b>Name:</b> {{ student.name }}</p>
+	<p><b>Phone No:</b> {{ student.phone_no }}</p>
+	<p><b>Email:</b> {{ student.email }}</p>
+	<p><b>Programme:</b> {{ student.programme }}</p>
+	<p><b>Group:</b> {{ student.group }}</p>
+	<p><b>Fee Balance:</b> {{ student.fee_balance }}</p>
+</div>
+	<div class="md-6">
+		<h4><em>Payment History</em></h4><hr>
+		<div class="row">
+			<div class="col-md-6">
+			<div class="table-responsive"> 
+			   <table class="table table-hover"> 
+			   <!--	<caption><button class="btn btn-info" type="submit" href="">CheckOut</button></caption> -->
+			      <thead> 
+			         <tr>
+			         	<!-- <th class="col-md-1">No</th>  -->
+			            <th>Debit</th>
+			            <th>Time Stamp</th> 
+			         </tr> 
+			      </thead> 
+			      <tbody>
+			      	 {% for el in debits %}
+			      	 {% if student.id == el.student_id %}
+			         <tr>
+			            <td>{{ el.amount }}</td>
+			            <td>{{ el.timestamp.date }}</td>
+			            {% endif %}
+			            {% endfor %}
+			         </tr> 
+			         	<tr>
+			            <!-- <th>Fee Balance:</th>  -->
+			         </tr>
+			      </tbody> 
+			   </table>
+			</div>
+		</div>
+
+		<div style="width: 100%" class="col-md-6">
+			<div class="table-responsive"> 
+			   <table class="table table-hover"> 
+			   <!--	<caption><button class="btn btn-info" type="submit" href="">CheckOut</button></caption> -->
+			      <thead> 
+			         <tr>
+			            <th>Credit</th>
+			            <th>Time Stamp</th>  
+			         </tr> 
+			      </thead> 
+			      <tbody>
+			      	{% for element in credits %}
+			      	{% if student.id == element.student_id %}
+			         <tr>
+			            <td>{{ element.amount }}</td>
+			            <td>{{ element.timestamp.date }}</td>
+			            {% endif %}
+			            {% endfor %}
+			         </tr>
+			         <tr>
+			            <!-- <th>{{ student.fee_balance }}</th>  --> 
+			         </tr> 
+			      </tbody> 
+			   </table>
+			</div>
+			</div>
+		</div>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+{% endfor %}

@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-3">
+	<h4 class="py-3 pl-3" style="background-color: #b6e3b6; border-radius: 5em;">Fee statement for: {{name}}</h4>
+	<div style="background-color: #b6e3b6; border-radius: 5em;" class="row pl-3">
+		<div class="col-md-3 mt-3">
+			<div class="table-responsive"> 
+			   <table class="table table-hover"> 
+			   <!--	<caption><button class="btn btn-info" type="submit" href="">CheckOut</button></caption> -->
+			      <thead> 
+			         <tr>
+			         	<!-- <th class="col-md-1">No</th>  -->
+			            <th>Debit</th>
+			            <th>Time Stamp</th> 
+			         </tr> 
+			      </thead> 
+			      <tbody>
+			      	 {% for el in debits %}
+			         <tr>
+			            <td>{{ el.amount }}</td>
+			            <td>{{ el.timestamp.date }}</td>
+			            {% endfor %}
+			         </tr> 
+			         	<tr>
+			            <!-- <th>Fee Balance:</th>  -->
+			         </tr>
+			      </tbody> 
+			   </table>
+			</div>
+		</div>
+
+		<div class="col-md-3 mt-3">
+			<div class="table-responsive"> 
+			   <table class="table table-hover"> 
+			   <!--	<caption><button class="btn btn-info" type="submit" href="">CheckOut</button></caption> -->
+			      <thead> 
+			         <tr>
+			            <th>Credit</th>
+			            <th>Time Stamp</th>  
+			         </tr> 
+			      </thead> 
+			      <tbody>
+			      	{% for element in credits %}
+			         <tr>
+			            <td>{{ element.amount }}</td>
+			            <td>{{ element.timestamp.date }}</td>
+			            {% endfor %}
+			         </tr>
+			         <tr>
+			            <!-- <th>{{ student.fee_balance }}</th>  --> 
+			         </tr> 
+			      </tbody> 
+			   </table>
+			</div>
+		</div>
+
+	</div>
+	<hr>
+	<div style="background-color: #c4bac2; border-radius: 5em;" class="row">
+		<div class="col-md-3">
+			<p class="pt-3"><b> Fee Balance: </b></p>
+		</div>
+		<div class="col-md-2">
+			<p class="pl-4 pt-3"><b> {{ student.fee_balance }} </b></p>
+		</div>
+		
+	</div>
+</div>
+{% endblock content %}

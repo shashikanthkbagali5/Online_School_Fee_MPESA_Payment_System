@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+
+{% block style %}
+<link rel="stylesheet" type="text/css" href="http://localhost:8000/static/admin/css/base.css">
+{% endblock %}
+
+{% block content %}
+
+<style type="text/css">
+	li {
+	font-size: 1rem;
+}
+</style>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-6 mt-3">
+			<form method='POST' enctype='multipart/form-data'> {% csrf_token %}
+			{{ form.as_p }}
+				<input class="btn btn-info" type='submit' value='save'/>
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock content %}

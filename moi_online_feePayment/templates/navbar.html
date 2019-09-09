@@ -1,0 +1,154 @@
+
+<style type="text/css">
+	.gleen {
+
+    background-color: #329761 !important;
+
+}
+li{
+	display: block;
+}
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-dark gleen">
+	{% if request.user.is_staff %}
+	<a class="navbar-brand" href="/">Staff Administration</a>
+	{% else %}
+	<a class="navbar-brand" href="/">Moi University Fee Payment System</a>
+	{% endif %}
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target=​"#navbarSupportedContent" aria-controls=​"navbarSupportedContent" aria-expanded="false" aria-label="Toggle Navigation">
+		<span class=​"navbar-toggler-icon"​></span>
+	</button>
+	<div class="navbar-collapse collapse chk" id=​"navbarSupportedContent"​>
+		<ul class="navbar-nav mr-auto">
+			{% if not request.user.is_staff and request.user.is_authenticated %}
+			<li class="nav-item">
+				<a class="nav-link load" href="/">Student Profile<span class=​"sr-only"​>​</span></a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link load" href="/fees">Pay Fees<span class=​"sr-only"​>​</span></a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link load" href="/statement">Fee Statement</a>
+			</li>
+			{% endif %}
+			<li class="nav-item dropdown">
+				{% if request.user.is_staff %}
+					<a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Staff </a>
+				{% else %}
+					<a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Student </a>
+				{% endif %}
+				<div class="dropdown-menu" aria-labelledby=​"navbarDropdown"​>
+					{% if not request.user.is_staff %}
+					<a class="dropdown-item" href="/card">Print Exam Card</a>
+					{% else %}
+					<a class="dropdown-item" href="/billing">Bill</a>
+					<a class="dropdown-item" href="/list">Student List</a>
+					{% endif %}
+					{% if request.user.is_superuser %}
+						<div class=​"dropdown-divider"​>
+							<a class="dropdown-item" href="/admin">Admin</a> 
+						</div>
+					{% endif %}
+				</div> </li>
+		</ul>
+		
+		{% if request.user.is_authenticated %}
+			<div class="nav-item navbar-nav pr-2">
+				<a class="nav-link load" href="/logout">Log Out</a>
+			</div>
+		{% else %}
+			<div class="nav-item navbar-nav pr-2">
+				<a class="load nav-link" href="/login">Log In</a>
+			</div>
+			<div class="nav-item navbar-nav" >
+			<a class=" load nav-link" href="/create">Register</a>
+			</div>
+
+		{% endif %}
+
+		{% if request.user.is_staff %}
+		<form method="GET" action="{% url 'search_' %}" class="form-inline my-2 my-lg-0">
+			<input class="form-control mr-sm-2" name="q" type="search" placeholder="Student Search" aria-label="Search">
+			<button style="color: rgb(8, 244, 218);" class="btn load btn-outline-success my-2 my-sm-0" type=​"submit"​>​Search​</button>
+		</form>
+		{% endif %}
+
+	</div>
+</nav>
+<script type="text/javascript">
+
+		//change event
+		$("input[type='search']").change(function(){
+			console.log($(this).val())
+			$.ajax({url: "{% url 'search_' %}", data : 'q='+$(this).val(), success: function(result){
+				// console.log(result);
+				$('body').html(result).fadeIn('normal')
+			} });
+		});
+		//end of change event
+
+
+	$(document).ready(function(){
+		$('.navbar-toggler').click(function(){
+			// if ($('.chk').hasClass('navbar-collapse')) {
+
+			// } else {}
+			$('.chk').toggleClass('collapse');
+		});
+		//keypress test
+
+		// $(document).keypress(function(e){
+		// 	var kp = String.fromCharCode(e.which);
+		// 	$('.test').val(kp);
+		// });
+
+		//end of keypress code
+
+
+		//loader code
+		$('.load').click(function(){
+		$('body').preloader('remove');
+		$('body').preloader({
+			percent: '94',
+			duration: '4000',
+			text: 'Processing...',
+		});
+
+	});
+	//end of loader code
+
+	});
+
+	// var x = ajaxObj();
+	// function ajaxObj(meth, url) {
+	// 	var x;
+	// 	if (window.XMLHttpRequest) {
+	// 		//New Browsers
+	// 		x = new XMLHttpRequest();
+	// 	}
+	// 	else {
+	// 		x = new ActiveXObject("Microsoft.XMLHTTP");
+	// 	}
+	// 	x.open(meth, url, true);
+	// 	// x.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	// 	return x;
+	// }
+	// function ajaxReturn(x) {
+	// 	if (x.readyState == 4 && x.status == 200) {
+	// 		return true;
+	// 	}
+	// }  
+	// $(function(){
+	// 		//ajax trial
+	// var ajax = ajaxObj("GET", "{% url 'search_' %}");
+	// ajax.onreadystatechange = function(){
+	// 	if (ajaxReturn(ajax) == true) {
+	// 		console.log(ajax.responseText)
+	// 		$('body').innerHTML(ajax.responseText);
+	// 	}
+	// }
+	// ajax.send('q='+$("input[type='search']").val());
+	// //end of ajax trial
+	// });
+</script>

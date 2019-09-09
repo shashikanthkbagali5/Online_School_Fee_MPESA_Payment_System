@@ -1,0 +1,131 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Moi University</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
+		<style type="text/css">
+			th, td{
+			border-right: .15em solid black!important;
+		}
+			.img.img-fluid {
+		/*    border-color: green;
+		    border-width: .1em;
+		    border-style: solid;*/
+		    width: 9em;
+		    height: 8em;
+		}
+		thead, tbody, tr{
+			border: .18rem solid black;
+			border-bottom: .2rem solid black;
+		}
+			body, head {
+				font-family: 'Pacifico', cursive;
+			}
+			.mdc{
+			border-color: #000; border-width: thin; border-style: solid;	
+			}
+		</style>
+</head>
+<body>
+<div class="container">
+	<div class="row mt-3">
+		<div style="padding-left: 0; padding-bottom: 0;" class="col-md-12">
+			<div class="text-center align-center">
+				<img class="img img-fluid" src="{% static 'media/moi_logo.jpg' %}" alt="dis nuts">
+				<p class="pt-2"><b>MOI UNIVERSITY</b></p>
+				<p><b>OFFICE OF THE DEPUTY VICE CHANCELLOR (A,R&E)</b></p>
+				<p><b>2019/2020 ACADEMIC YEAR EXAM CARD</b></p>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6">SERIAL NUMBER: {{rst}}</div>
+		<div class="col-md-6 ml-auto">TIMESTAMP: {{timestamp}}</div>
+	</div>
+	<div class="row mdc">
+		<div style="padding-left: 0;" class="col-md-2">
+			<img class="img img-fluid" src="{{student.image.url}}" alt="dis nuts">
+		</div>
+		<div style="padding-left: 0;" class="col-md-5">
+			<p><b>Name: &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp</b>{{student.name}}</p>
+			<p><b>Reg Number: &nbsp </b>{{student.reg_no}}</p>
+			<p><b>Group: </b>{{student.group}}</p>
+		</div>
+		<div class="col-md-5">
+			<p><b>Phone No: </b>{{student.phone_no}}<br><b>Email: </b>{{student.email}}</p>
+			<p><b>Academic Year: </b>{{student.group.get_year_sem_display}}</p>
+		</div>
+		<div style="width: 100%" class="row mt-4">
+			<div style="padding-left: 0;" class="col-md-2">
+				<!-- QR goes here -->
+
+			</div>
+			<div class="col-md-10">
+				<p><b>Programme: </b>{{student.programme}}</p>
+				<p><b>School: </b>School of Education</p>
+				<p><b>Campus: </b>Main Campus</p>
+
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="mt-3 col-md-12">
+			<p class="text-center"><b>REGISTERED COURSES</b></p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="table-responsive"> 
+			   <table class="table table-bordered table-hover"> 
+			      <thead> 
+			         <tr>
+			            <th>CODE</th>
+			            <th>TITLE</th>
+			            <th>UNITS</th>
+			            <th>BOOKLET S/N</th>
+			            <th>SIGN</th>
+			         </tr> 
+			      </thead> 
+			      <tbody>
+			      	{% for c in courses %}
+			         <tr>
+			            <td>{{ c.code }}</td>
+			            <td>{{ c.title }}</td>
+			            <td>{{ c.units }}</td>
+			            <td></td>
+			            <td></td>
+			            {% endfor %}
+			         </tr>
+			      </tbody> 
+			   </table>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-md-12">
+			<ol type="1">
+				<li>The above named Student has registered for the listed courses for {{ student.group.get_year_sem_display }}.</li>
+				<li>You are required to print the exam card and produce it on demand along with the SMS sent to your phone number.</li>
+				<li>The card bears the official serial number and timestamp which are critical elements for verifying the card's authenticity.</li>
+			</ol>
+		</div>
+	</div>
+
+	<div class="row mt-5">
+		<div class="col-md-5 text-center">
+			<br>
+
+			<hr style="border: .1em solid;">
+			<p><b>DEPUTY VICE CHANCELLOR(A,R&E)</b></p>
+		</div>
+		<div class="col-md-5 ml-auto text-center">
+			{{ftm}}
+			<hr style="border: .1em solid;">
+			<p><b>DATE</b></p>
+		</div>
+	</div>
+</div>
+</body>
+</html>

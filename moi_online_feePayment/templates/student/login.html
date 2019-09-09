@@ -1,0 +1,84 @@
+
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block message %}  
+{% if not cred and data %}
+{% if messages %}
+	{% for message in messages|slice:"forloop.count-1:" %}
+	<ul style="padding: 0" class="errormsg">
+	<li>{{message}}</li>
+	{% endfor %}
+	</ul>
+{% endif %}
+{% endif %}
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+	<div class="row mt-5">
+		<div class="col-md-3 ">
+			<form method='POST'> {% csrf_token %}
+			<!--The as_p builtin method turns the form that 
+			we are passing into the template an actual html form-->
+			{{ form.as_p }}
+			<input class='btn btn-outline-success' type='submit' value='Submit'/>
+		</div>
+	</div>
+</div>
+</form>
+<script type="text/javascript">
+	$(document).ready(function () {
+		$('.btn').click(function(){
+			// Start of the first preloader
+			$('body').preloader('remove');
+			$('body').preloader({
+				percent: '83',
+				duration: '4000',
+				text: 'Processing...',
+			});
+			// setTimeout($('body').preloader('remove'), 30000);
+
+			// The beginning of the next
+
+			// $('body').introLoader({
+			// 	options: {
+			// 		exitTime: '300',
+			// 		animationTime:'300',
+			// 		progbarTime: '300',
+			// 		delayBefore: '500',
+			// 		delayAfter: '500',
+			// 		exitFx: 'fadeOut',
+			// 		ease: "linear",
+			// 		style: 'light',
+			// 		progbarDelayAfter: '300',
+			// 		// stop:true,
+			// 	},
+			// 	spinJs: {
+			// 		color: '#329761',
+			// 		length: 0,
+			// 		lines: 15,
+			// 		width: 10,
+			// 		radius: 50,
+			// 	}
+			// });
+
+		});
+		// $('body').introLoader({
+		// 	spinJs: {
+		// 		color: '#329761',
+		// 		length: 0,
+		// 		lines: 15,
+		// 		width: 10,
+		// 		radius: 50,
+		// 	}
+		// });
+
+		// $('body').preloader()
+
+		// $('body').maskLoader();
+	});
+</script>
+{% endblock content %}

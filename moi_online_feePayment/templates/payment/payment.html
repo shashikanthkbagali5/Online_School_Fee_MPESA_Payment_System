@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block message %}
+  
+{% if messages %}
+
+	{% for message in messages|slice:"forloop.count-1:" %}
+	<ul class="{{message.extra_tags}}">
+	<li class="{{message.tags}}">{{message}}</li>
+	{% endfor %}
+</ul>
+{% endif %}
+
+{% endblock %}
+
+{% block content %}
+<style type="text/css">
+	.form-control:focus {
+    color: #495057;
+    background-color: #fff;
+    border-color: #28a745;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 255, 70, 0.25);
+}
+</style>
+<div class="container mt-3">
+	<div class="row pl-5 pb-3">
+		<div style="background-color: #b6e3b6; border-radius: 5em;" class="col-md-9 mt-3 py-5 px-5">
+			<p style="background-color: #b1f0ad; border-radius: 2em;" class="py-2 pl-3 pb-3">Your fee balance = <b> {{ balance }}</b></p>
+			<br>
+			<p>Pay with MPESA:</p>
+			<form method='GET' action="{% url 'payment_' %}">
+				<input style="border-radius: 1rem" class="form-control mb-3" type="text" name="bal">
+				<button type="submit" class="btn btn-lg btn-outline-success px-5" >Pay</button>
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock content %}

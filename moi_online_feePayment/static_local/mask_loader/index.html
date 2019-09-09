@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>MaskLoader jQuery  Plugin Demos</title>
+	
+	<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+	<link rel="stylesheet" type="text/css" href="dist/maskloader.css" />
+</head>
+<body>
+	
+	<div class="page container">
+		<div class="page-header clearfix">
+			<h1>MaskLoader jQuery  Plugin Demos</h1>
+            <div class="jquery-script-ads"><script type="text/javascript">
+    google_ad_client = "ca-pub-2783044520727903";
+    google_ad_slot = "2780937993";
+    google_ad_width = 728;
+    google_ad_height = 90;
+</script>
+<!-- jQuery_demo -->
+<script type="text/javascript"
+src="//pagead2.googlesyndication.com/pagead/show_ads.js">
+</script></div>
+			
+		</div>
+		<div class="jumbotron">
+			<div class="row">
+				<div class="col-md-6">
+					<div class="panel panel-info">
+						<div class="panel-heading">Bootstrap: Basic Form</div>
+						<div class="panel-body">
+							<form role="form">
+								<div class="form-group">
+									<label class="control-label" for="exampleInputEmail1">Email</label>
+									<input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+									<p class="help-block">Lorem ipsum dolor sit amet</p>
+								</div>
+
+								<div class="form-group">
+									<label class="control-label" for="exampleInputPassword1">Password</label>
+									<input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+									<p class="help-block">Lorem ipsum dolor sit amet</p>
+								</div>
+
+								<div class="form-group">
+									<label class="control-label" for="exampleInputFile">File</label>
+									<input type="file" id="exampleInputFile">
+									<p class="help-block">Example block-level help text here.</p>
+								</div>
+
+								<div class="form-group">
+									<div class="checkbox">
+										<label>
+											<input type="checkbox"> Active
+										</label>
+									</div>
+									<p class="help-block">Lorem ipsum dolor sit amet</p>
+								</div>
+
+								<div class="form-group">
+									<label class="control-label">Choices</label>
+									<div class="checkbox">
+										<label>
+											<input type="checkbox" name="optionsRadios" id="optionsCheckbox1" value="option1" checked="">
+											Option one is this and that—be sure to include why it's great
+										</label>
+									</div>
+									<div class="checkbox">
+										<label>
+											<input type="checkbox" name="optionsRadios" id="optionsCheckbox2" value="option2">
+											Option two can be something else and selecting it will deselect option one
+										</label>
+									</div>
+								</div>
+
+								<div class="form-group">
+									<label class="control-label">Sex</label>
+									<div class="radio">
+										<label>
+											<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
+											Male
+										</label>
+									</div>
+									<div class="radio">
+										<label>
+											<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+											Female
+										</label>
+									</div>
+									<p class="help-block">Lorem ipsum dolor sit amet</p>
+								</div>
+
+								<button type="submit" class="btn btn-default">Create User</button>
+							</form>
+
+						</div>
+					</div>
+				</div>
+
+				<div class="col-md-6">
+					<div class="panel panel-info">
+						<div class="panel-heading">Usage Example</div>
+						<div class="panel-body">
+
+							<button type="button" id="bt-body" class="btn btn-lg btn-default">Body</button> <span>Click this button to execute the code below:</span><br/><br/>
+							<p><button class="btn btn-xs btn-primary" data-toggle="collapse" data-target="#body-code">Display code</button></p>
+							<pre class="collapse" id="body-code">
+							$('#bt-body').click(function(){
+								var maskloader = $('body').maskLoader();
+								
+								setTimeout(function(){
+									maskloader.destroy();
+								},3000);
+							});								
+							</pre>
+							<hr/>
+							<button type="button" id="bt-panel" class="btn btn-lg btn-default">Panel</button> <span>Click this button to execute the code below:</span><br/><br/>
+							<p><button class="btn btn-xs btn-primary" data-toggle="collapse" data-target="#panel-code">Display code</button></p>
+							<pre class="collapse" id="panel-code">
+							$('#bt-panel').click(function(){
+								var maskloader = $('.panel-info').first().maskLoader();
+								
+								setTimeout(function(){
+									maskloader.destroy();
+								},3000);
+							});								
+							</pre>
+							<hr/>
+							<button type="button" id="bt-formgroup" class="btn btn-lg btn-default">Form Group</button> <span>Click this button to execute the code below:</span><br/><br/>
+							<p><button class="btn btn-xs btn-primary" data-toggle="collapse" data-target="#formgroup-code">Display code</button></p>
+							<pre class="collapse" id="formgroup-code">
+							$('#bt-formgroup').click(function(){
+								var maskloader = $('.form-group').first().maskLoader();
+								
+								setTimeout(function(){
+									maskloader.destroy();
+								},3000);
+							});								
+							</pre>
+							<hr/>
+
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<script data-main="src/js/boot" src="vendor/requirejs/require.js"></script>
+	<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-36251023-1']);
+  _gaq.push(['_setDomainName', 'jqueryscript.net']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+</body>
+</html>

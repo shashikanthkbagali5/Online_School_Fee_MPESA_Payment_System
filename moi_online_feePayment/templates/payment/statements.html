@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-3">
+	<h3>Fee statement for: {{name}}</h3>
+	<div class="row">
+		<div class="col-md-6 mt-3 mr--3">
+			<div class="table-responsive"> 
+			   <table class="table table-hover"> 
+			   <!--	<caption><button class="btn btn-info" type="submit" href="">CheckOut</button></caption> -->
+			      <thead> 
+			         <tr>
+			         	<th class="col-md-1">No</th> 
+			            <th>Debit</th>
+			            <th>Credit</th> 
+			         </tr> 
+			      </thead> 
+			      <tbody class="looping">
+<!-- 			      	 {% for ent in entries %}
+			      	 {% for el in debits %}
+			      	 {% for element in credits %}
+			         <tr>
+			         	 <td>{{ forloop.counter }}</td>
+			         	{% if e_count >= d_count %}
+			            <td>{{ el.amount }}</td>
+			            {% else %}
+			            <td></td>
+			            {% endif %}
+			            {% if e_count >= c_count %}
+			            <td>{{ element.amount }}</td>
+			            {% else %}
+			            <td></td>
+			            {% endif %}
+			            {% endfor %}
+			            {% endfor %}
+			            {% endfor %} -->
+			       <!--   </tr> -->
+			      </tbody>
+			      	<tr>
+			      		<th></th>
+			            <th>Fee Balance:</th> 
+		            <th>{{ student.fee_balance }}</th>  
+		         </tr> 
+			   </table>
+			</div>
+			<!-- <button class="btn btn-success" id="looping">Click Me</button> -->
+		</div>
+		<script type="text/javascript">
+		$(document).ready( function() {
+			let content;
+			// var cred = jQuery.parseJSON("{{ credits }}");
+			// var debs = jQuery.parseJSON("{{ debits }}");
+			for (var i = 1; i <=6; i++) {
+			// "{% for el in credits|slice:":c_count" %}"
+			// "{% for cl in debits|slice:":d_count" %}"	
+				content += '<tr><td>' + i + '</td>';
+				content += '<td>' + '{{ el.amount }}' + '</td>';
+				content += '<td>' + '{{ cl.amount }}' + '</td>';
+			// "{% endfor %}"
+			// "{% endfor %}"
+			}
+		// 	for (var i = 1; i <= {{ e_count }}; i++) {
+		// 		content += '<tr><td>' + i + '</td>';
+		// 		for (var i = 1; i <= {{ d_count }}; i++) {
+		// 			for (var key in cred ){
+		// 				// convert the django queryset to json before passing in into the template...
+		// 				// jQuery will take over the processing from there
+		// 			if ({{ e_count }} > {{ d_count }} ) {content += '<tr><td></td>';} else {content += '<tr><td>' + cred[key] + '</td>';}
+					
+		// 		}
+		// 		for (var i=0, keys=Object.keys(debs), l=keys.length; i<=l; i++) {
+		// 			if ({{ e_count }} > {{ d_count }} ) {content += '<tr><td></td>';} else {content += '<tr><td>' + debs[key] + '</td>';}
+		// 		}
+		// 	}
+		// }
+			$(".looping").append(content);
+			});
+	</script>
+
+{% endblock content %}

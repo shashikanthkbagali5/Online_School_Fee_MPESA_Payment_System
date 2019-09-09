@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" type="text/css" href="http://localhost:8000/static/admin/css/base.css">
+{% endblock %}
+
+{% block message %}  
+{% if messages %}
+
+	{% for message in messages|slice:"forloop.count-1:" %}
+	<ul class="messagelist">
+	<li>{{message}}</li>
+	{% endfor %}
+</ul>
+{% endif %}
+
+{% endblock %}
+{% block content %}
+
+
+<style type="text/css">
+	.img.img-fluid {
+
+    border-color: green;
+    border-width: .2em;
+    border-style: solid;
+    width: 20em;
+    height: 20em;
+    border-radius: 50%;
+}
+
+a:link, a:visited {
+
+    text-decoration: none;
+
+}
+.object-tools a:link, .object-tools a:visited {
+	background: #329761!important;
+}
+
+.object-tools a:link {
+	background-color: #329761!important;
+}
+.object-tools a:focus, .object-tools a:hover {
+    background-color: #04aa04!important;
+}
+/*#218838*/
+li {
+	font-size: 1rem;
+}
+/*.object-tools a:link, .object-tools a:visited {
+	background-color: #28a745; 
+}*/
+.object-tools a.addlink {
+
+    background-image: url(http://localhost:8000/static/admin/img/icon-changelink.svg);
+
+}
+
+</style>
+<div class="container">
+	<h2 class="mt-3"><b class="px-3 pb-2" style="background-color: #b6e3b6; border-radius: 2em;">Student Details</b></h2>
+	<hr>
+	<div style="background-color: #b6e3b6; border-radius: 5em;" class="row">
+		<div class="col-lg-4 my-3 col-md-6 col-sm-9 col-xs-6">
+
+				{% if object.image %}
+				<img class="img img-fluid" src="{{object.image.url}}" alt="dis nuts">
+				{% endif %}	 
+		</div>
+		<div class="col-lg-6 my-3 col-md-3 col-sm-9 col-xs-12">
+				<div class="caption">
+					<p><b> Name:</b> {{ object.name }} </p>
+					<p><b> RegNo:</b> {{ object.reg_no }}</p>
+					<p><b> Email:</b> {{ object.email }}</p>
+					<p><b> Phone No:</b> {{ object.phone_no }}</p>
+					<p><b> Programme:</b> {{ object.programme }}</p>
+					<p><b> Group:</b> {{ object.group }}</p>
+					<p><b> Academic Year:</b> {{ object.group.get_year_sem_display }}</p>
+				</div>			 
+		</div>
+		<div style="float: left; width: 100%" class="col-lg-2 col-md-3">
+			<ul class="object-tools">
+				<li>
+					<a class="addlink" href="/edit">Edit Profile</a>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+{% endblock content %}

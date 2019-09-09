@@ -1,0 +1,35 @@
+{
+  "name": "maskLoader",
+  "version": "1.0.1",
+  "authors": [
+    "Rafael Ortega Bueno <rafael@uecommerce.com.br>"
+  ],
+  "description": "Loader mask for use in ajax",
+  "main": "dist/jquery.maskloader.js",
+  "moduleType": [
+    "AMD"
+  ],
+  "keywords": [
+    "ajax",
+    "loader",
+    "loading",
+    "preloader"
+  ],
+  "license": "MIT",
+  "homepage": "http://www.uecommerce.com.br",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "requirejs": "~2.1.20",
+    "bootstrap": "~3.3.5",
+    "prettyprint": "*"
+  },
+  "dependencies": {
+    "jquery": "~2.1.4"
+  }
+}
